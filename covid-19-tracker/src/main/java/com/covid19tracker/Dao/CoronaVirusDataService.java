@@ -34,6 +34,7 @@ public class CoronaVirusDataService {
 	}
 
 	@PostConstruct
+	 @Scheduled(fixedRate = 360000)
 	public void fetchVirusData() throws ClientProtocolException, IOException
 	{
 	    List<LocationData> newlocationData=new ArrayList<>();
