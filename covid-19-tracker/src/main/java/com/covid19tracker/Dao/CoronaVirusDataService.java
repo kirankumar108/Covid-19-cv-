@@ -34,7 +34,6 @@ public class CoronaVirusDataService {
 	}
 
 	@PostConstruct
-	@Scheduled(cron="**/5***")
 	public void fetchVirusData() throws ClientProtocolException, IOException
 	{
 	    List<LocationData> newlocationData=new ArrayList<>();
@@ -62,8 +61,11 @@ public class CoronaVirusDataService {
 				LocationData locationdata=new LocationData();
 				locationdata.setState(record.get("Province/State"));
 				locationdata.setCountry(record.get("Country/Region"));
-				locationdata.setLatestStats(Integer.parseInt(record.get(record.size()-1)));
-				  System.out.println(locationdata );
+				  int latesCases=Integer.parseInt(record.get(record.size()-1));
+				  int previousCases=Integer.parseInt(record.get(record.size()-2));
+				  locationdata.setLatestStats(latesCases);
+				  locationdata.setDiffFromPreviousDay(latesCases-previousCases);
+				  System.out.println(locationdata);
 				  
 				newlocationData.add(locationdata);
 			  

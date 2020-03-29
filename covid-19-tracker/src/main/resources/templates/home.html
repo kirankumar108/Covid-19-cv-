@@ -3,31 +3,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
   <head>
+  
     <title>corona virus tracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" media="all" 
           href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
   </head>
 
   <body>
+   <div class="container">
+   
+   <h1>Corona Virus Tracker</h1>
+   <h5>This Application Lists Current Number Of Corona Cases In Globe</h5>
   
-    <p th:text="${testname}"></p>
+   <div class="jumbotron">
+  <h1 class="display-4"  th:text="${totalReportedCases}"></h1>
+  <p class="lead">Total Cases Reported As Of Today</p>
+  <hr class="my-4">
+  <p>
+  <span>New Cases Reported since previous Day</span>
+  <span th:text="${totalNewCases}"><b>0</b></span>
+  </p>
+</div>
     
-    
-    <table>
+    <div class="container">
+    <table class="table">
       <tr>
         <th>STATE</th>
         <th>COUNTRY</th>
-        <th>IN STOCK</th>
+        <th>Latest Count</th>
+        <th>Changes Since Last Day</th>
       </tr>
       <tr th:each="data : ${coviddata}">
-        <td th:text="${data.state}">Onions</td>
-        <td th:text="${data.country}">2.41</td>
-        <td th:text="${data.latestStats}? #{true} ">0</td>
+        <td th:text="${data.state}"></td>
+        <td th:text="${data.country}"></td>
+        <td th:text="${data.latestStats}">0</td>
+         <td th:text="${data.diffFromPreviousDay}">0</td>
       </tr>
     </table>
   
-  
+  </div>
   </body>
 
 </html>
