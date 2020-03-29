@@ -28,12 +28,13 @@ public class CoronaVirusDataService {
 	private static String VIRUS_URL="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 	private final CloseableHttpClient httpClient = HttpClients.createDefault();
 	
-	List<LocationData> locationData=new ArrayList<>();
-
-	
+	private List<LocationData> locationData=new ArrayList<>();
+	public List<LocationData> getLocationData() {
+		return locationData;
+	}
 
 	@PostConstruct
-	@Scheduled(cron="***1***")
+	@Scheduled(cron="**/5***")
 	public void fetchVirusData() throws ClientProtocolException, IOException
 	{
 	    List<LocationData> newlocationData=new ArrayList<>();
